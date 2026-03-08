@@ -1,280 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PolyPet</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <title>PolyPet | Language Learning Hub</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolyPet | Master Your Language</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="logo">🐾 PolyPet</div>
-    <div class="nav-links">
-      <a onclick="scrollToSection('home')">Home</a>
-      <a onclick="scrollToSection('schedule')">Schedule</a>
-      <a onclick="scrollToSection('resources')">Resources</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section id="home" class="hero section">
-    <div class="bg-blobs">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <div class="hero-container">
-      <!-- LEFT: PET CARD -->
-      <div class="pet-panel">
-        <div class="pet-avatar">🦊</div>
-        <h3>Pika</h3>
-        <p>Level <span id="level">1</span></p>
-        <div class="xp-bar">
-          <div id="xp-fill"></div>
-  <div class="bg-grid"></div>
-  <header class="topbar">
-    <div class="brand">🦊 PolyPet</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#learn">Learn</a>
-      <a href="#pets">Pet Collection</a>
+    <nav class="sidebar">
+        <div class="logo">🦊 PolyPet</div>
+        <ul class="nav-links">
+            <li class="active">🏠 Dashboard</li>
+            <li>📚 Learning Center</li>
+            <li>🃏 Flashcards</li>
+            <li>🐾 Pet Collection</li>
+            <li>📅 Tutoring</li>
+        </ul>
+        <div class="user-stats">
+            <div class="stat">🔥 <span id="streak-count">12</span> Days</div>
+            <div class="stat">✨ <span id="xp-count">1,250</span> XP</div>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <section id="home" class="panel hero">
-      <div class="hero-left">
-        <p class="eyebrow">FBLA Website Design</p>
-        <h1>Your high-tech language learning hub.</h1>
-        <p class="sub">Build fluency with tutoring sessions, practice modes, and a pet-powered reward system.</p>
+    <main class="content">
+        <header class="top-header">
+            <div class="greeting">
+                <h1 id="welcome-msg">Good Morning, Learner!</h1>
+                <p id="pet-message">"Clever like a fox, keep up the pawsome progress!"</p>
+            </div>
+            <div class="world-clock-widget">
+                <input type="text" id="country-search" placeholder="Add country clock...">
+                <div id="clock-container"></div>
+            </div>
+        </header>
 
-        <div class="hero-stats">
-          <div class="tile"><span id="streakValue">0</span><label>Day Streak 🔥</label></div>
-          <div class="tile"><span id="xpValue">0</span><label>Total XP</label></div>
-          <div class="tile"><span id="userClock">--:--</span><label>Your Local Time</label></div>
-        </div>
-        <p>🔥 <span id="streak">0</span> Day Streak</p>
-        <button onclick="completeLesson()">Play</button>
-      </div>
+        <section class="dashboard-grid">
+            <div class="card pet-card">
+                <h3>My Companion</h3>
+                <div class="avatar-display">
+                    <img src="https://via.placeholder.com/150?text=Fox" id="main-pet" alt="Mascot">
+                </div>
+                <input type="text" id="pet-name" value="Foxy" onchange="updatePetName()">
+                <p>Level 14 PolyFox</p>
+            </div>
 
-      <!-- CENTER: SPEECH BUBBLE -->
-      <div class="speech-bubble">
-        <h2 id="dynamicGreeting">Welcome Back, Emma!</h2>
-        <p>Clever like a fox, keep up the great work! 🌟</p>
-        <div class="greeting-box">
-          <h3 id="timeGreeting">Welcome back!</h3>
-          <p id="petMessage">Clever like a fox, keep up the pawsome progress!</p>
-        </div>
-      </div>
+            <div class="card schedule-card">
+                <h3>Today's Schedule</h3>
+                <ul class="task-list">
+                    <li><span class="time">14:00</span> 🇨🇳 Chinese Live Session</li>
+                    <li><span class="time">16:30</span> 🇩🇪 German Flashcards</li>
+                    <li><span class="time">19:00</span> 🐾 Pet Feeding Time</li>
+                </ul>
+            </div>
+        </section>
+    </main>
 
-      <!-- RIGHT: FLOATING LESSON CARDS -->
-      <div class="lesson-cards">
-        <div class="lesson-card float">
-          <h4>Spanish Basics</h4>
-          <p>⭐ ⭐</p>
-          <span class="lvl">Lv. 2</span>
-        </div>
-        <div class="lesson-card float delay1">
-          <h4>Kanji Practice</h4>
-          <p>⭐ ⭐ ⭐</p>
-          <span class="lvl">Lv. 3</span>
-        </div>
-        <div class="lesson-card float delay2">
-          <h4>Grammar Quiz</h4>
-          <p>⭐</p>
-          <span class="lvl">Lv. 1</span>
-      <div class="hero-right card">
-        <h3>My Avatar</h3>
-        <div class="avatar-display" id="avatarDisplay">🦊</div>
-        <p><strong id="petName">Fable</strong></p>
-        <div class="inline-actions">
-          <button id="renamePetBtn">Rename Pet</button>
-          <select id="avatarSelect"></select>
-        </div>
-        <p class="hint">Default avatar is fox. Unlock more pets by learning languages.</p>
-      </div>
-    </section>
-
-    <section id="schedule" class="panel two-col">
-      <div class="card">
-        <h2>Today’s Schedule & Tutor Tasks</h2>
-        <form id="taskForm" class="stack">
-          <input id="taskTitle" type="text" placeholder="Task (e.g., Mandarin tutor session)" required>
-          <input id="taskTime" type="time" required>
-          <button type="submit">Add Task</button>
-        </form>
-        <ul id="taskList" class="task-list"></ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- SCHEDULE -->
-  <section id="schedule" class="section">
-    <h2>Today's Schedule</h2>
-
-    <div class="filter-buttons">
-      <button onclick="filterSchedule('all')">All</button>
-      <button onclick="filterSchedule('spanish')">Spanish</button>
-      <button onclick="filterSchedule('mandarin')">Mandarin</button>
-    </div>
-
-    <div class="schedule-grid">
-      <div class="event spanish">
-        <h3>Spanish Lesson</h3>
-        <p>2:00 PM – 3:00 PM EST</p>
-      <div class="card">
-        <h2>World Clock</h2>
-        <p>Type a country to pin its timezone on your page.</p>
-        <form id="clockForm" class="stack">
-          <input id="countryInput" type="text" placeholder="Country (e.g., Germany)" required>
-          <button type="submit">Add Country Clock</button>
-        </form>
-        <div id="clockError" class="error"></div>
-        <div id="clockGrid" class="clock-grid"></div>
-      </div>
-      <div class="event mandarin">
-        <h3>Mandarin Lesson</h3>
-        <p>6:00 PM – 7:00 PM EST</p>
-    </section>
-
-    <section id="learn" class="panel card">
-      <h2>Learning Studio</h2>
-      <div class="tabs">
-        <button class="tab active" data-tab="flashcards">Flashcards</button>
-        <button class="tab" data-tab="fillblank">Fill in the Blank</button>
-        <button class="tab" data-tab="multiple">Multiple Choice</button>
-        <button class="tab" data-tab="translation">Translation</button>
-        <button class="tab" data-tab="sentence">Sentence Structure</button>
-        <button class="tab" data-tab="unit">Unit Test (25 Q)</button>
-      </div>
-    </div>
-
-    <!-- INTERACTIVE CALENDAR -->
-    <div class="calendar-box">
-      <input type="date" id="lesson-date">
-      <button onclick="scheduleLesson()">Schedule Lesson</button>
-      <ul id="lesson-list"></ul>
-    </div>
-
-    <!-- DYNAMIC WORLD CLOCK -->
-    <div class="world-clock">
-      <h3 class="world-clock-title">🌍 World Clock</h3>
-      <div id="clock-container" class="clock-container"></div>
-
-      <div class="add-clock-box">
-        <input type="text" id="new-country" placeholder="Country Name">
-        <input type="text" id="new-tz" placeholder="Timezone (e.g. Europe/Berlin)">
-        <button id="add-clock-btn" type="button">Add Clock</button>
-      <div id="flashcards" class="tab-pane active">
-        <div id="flashcard" class="flashcard">你好</div>
-        <div class="inline-actions"><button id="flipCardBtn">Flip</button><button id="nextCardBtn">Next</button></div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- RESOURCES -->
-  <section id="resources" class="section">
-  <h2>Resources</h2>
-
-  <!-- FOUR BUTTON CARDS -->
-  <div class="resource-cards">
-    <div class="resource-card" onclick="showResource('video')">🎥 Video Lesson</div>
-    <div class="resource-card" onclick="showResource('flashcards')">🃏 Flashcards</div>
-    <div class="resource-card" onclick="showResource('practice')">✏️ Practice Mode</div>
-    <div class="resource-card" onclick="showResource('test')">📝 Unit Test</div>
-  </div>
-
-  <!-- RESOURCE CONTENT BOXES -->
-  <div id="video" class="resource-content" style="display:none;">
-    <h3>Video Lesson</h3>
-    <p>Here you can add your video lesson or embed a YouTube link!</p>
-  </div>
-
-  <div id="flashcards" class="resource-content" style="display:none;">
-    <h3>Flashcards</h3>
-    <div id="flashcard" onclick="flipCard()">Click Load</div>
-    <button onclick="nextCard()">Next</button>
-  </div>
-
-  <div id="practice" class="resource-content" style="display:none;">
-    <h3>Practice Mode</h3>
-    <p>Fill in the blank: ___ es difícil, lo intentaré.</p>
-    <input id="practiceInput" type="text">
-    <button onclick="checkPractice()">Check</button>
-    <p id="practiceResult"></p>
-  </div>
-
-  <div id="test" class="resource-content" style="display:none;">
-    <h3>Unit Test</h3>
-    <p>1. "Sin embargo" means:</p>
-    <input type="radio" name="q1" value="however"> However<br>
-    <input type="radio" name="q1" value="despite"> Despite<br><br>
-      <div id="fillblank" class="tab-pane">
-        <p>Fill in: “Je ___ étudiant.”</p>
-        <input id="fillInput" type="text" placeholder="Your answer">
-        <button id="checkFillBtn">Check</button>
-        <p id="fillResult"></p>
-      </div>
-
-    <p>2. "Lograr" means:</p>
-    <input type="radio" name="q2" value="achieve"> To achieve<br>
-    <input type="radio" name="q2" value="develop"> To develop<br><br>
-      <div id="multiple" class="tab-pane">
-        <p>What does “ありがとう” mean?</p>
-        <div class="options" id="mcOptions"></div>
-        <p id="mcResult"></p>
-      </div>
-
-    <button onclick="submitTest()">Submit Test</button>
-    <p id="testScore"></p>
-  </div>
-      <div id="translation" class="tab-pane">
-        <p>Translate to English: “El gato duerme.”</p>
-        <input id="translationInput" type="text" placeholder="Translation">
-        <button id="checkTranslationBtn">Check</button>
-        <p id="translationResult"></p>
-      </div>
-
-</section>
-      <div id="sentence" class="tab-pane">
-        <p>Reorder into a proper sentence:</p>
-        <p><strong id="sentencePrompt"></strong></p>
-        <input id="sentenceInput" type="text" placeholder="Type ordered sentence">
-        <button id="checkSentenceBtn">Check</button>
-        <p id="sentenceResult"></p>
-      </div>
-
-  <!-- CONFETTI CANVAS -->
-  <canvas id="confettiCanvas"></canvas>
-      <div id="unit" class="tab-pane">
-        <div id="quizContainer"></div>
-        <button id="submitQuizBtn">Submit Unit Test</button>
-        <div id="quizResult"></div>
-      </div>
-    </section>
-
-  <footer>
-    © 2026 PolyPet | NJ FBLA State Competition
-  </footer>
-    <section id="pets" class="panel card">
-      <h2>Pet Collection</h2>
-      <p>Collect language pets like Pokémon cards as you progress.</p>
-      <div id="petCollection" class="pet-grid"></div>
-    </section>
-  </main>
-
-  <script src="js/script.js"></script>
-  <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
