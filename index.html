@@ -1,129 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PolyPet Language Learning</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyPet</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ================= PET / COLLECTION CSS ================= */
+    #pet-collection-section {
+      padding: 20px;
+      background: #fff0f0;
+      margin-bottom: 40px;
+    }
+    .pet-collection, .current-pet {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .pet-card {
+      border: 2px solid #ff7f7f;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      width: 120px;
+      background: #fff8f8;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      cursor: default;
+    }
+    .pet-emoji {
+      font-size: 50px;
+    }
+    .pet-name {
+      font-weight: 600;
+      margin-top: 5px;
+    }
+    .language-badge {
+      margin-top: 3px;
+      font-size: 12px;
+      background: #ffe6e6;
+      padding: 2px 6px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+    .collect-btn {
+      padding: 6px 10px;
+      background: #ff7f7f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-<h1>🌎 PolyPet Language Learning</h1>
-<p>Learn languages while raising your virtual pet</p>
-</header>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">🐾 PolyPet</div>
+    <div class="nav-links">
+      <a onclick="scrollToSection('home')">Home</a>
+      <a onclick="scrollToSection('schedule')">Schedule</a>
+      <a onclick="scrollToSection('resources')">Resources</a>
+      <a onclick="scrollToSection('pet-collection-section')">Pets</a>
+    </div>
+  </nav>
 
-<nav>
-<a href="#pet">Pet</a>
-<a href="#flashcards">Flashcards</a>
-<a href="#quiz">Quiz</a>
-<a href="#game">Game</a>
-<a href="#map">Language Map</a>
-<a href="#speech">Speech Practice</a>
-<a href="#leaderboard">Leaderboard</a>
-</nav>
+  <!-- HERO -->
+  <section id="home" class="hero section">
+    <div class="bg-blobs"><span></span><span></span><span></span></div>
+    <div class="hero-container">
 
-<section id="pet">
+      <!-- LEFT: PET CARD -->
+      <div class="pet-panel">
+        <div class="pet-avatar">🦊</div>
+        <h3 id="pet-name-display">Pika</h3>
+        <div class="pet-name-input-container">
+          <input type="text" id="pet-name-input" placeholder="Name your pet!">
+          <button id="pet-name-btn">Rename</button>
+        </div>
+        <p>Level <span id="level">1</span></p>
+        <div class="xp-bar">
+          <div id="xp-fill"></div>
+        </div>
+        <p>🔥 <span id="streak">0</span> Day Streak</p>
+        <button onclick="completeLesson()">Play</button>
+      </div>
 
-<h2>Your PolyPet</h2>
+      <!-- CENTER: SPEECH BUBBLE -->
+      <div class="speech-bubble">
+        <h2 id="dynamicGreeting">Welcome Back, Emma!</h2>
+        <p>Clever like a fox, keep up the great work! 🌟</p>
+      </div>
 
-<div id="petDisplay">🐣</div>
+      <!-- RIGHT: FLOATING LESSON CARDS -->
+      <div class="lesson-cards">
+        <div class="lesson-card float">
+          <h4>Spanish Basics</h4>
+          <p>⭐ ⭐</p>
+          <span class="lvl">Lv. 2</span>
+        </div>
+        <div class="lesson-card float delay1">
+          <h4>Kanji Practice</h4>
+          <p>⭐ ⭐ ⭐</p>
+          <span class="lvl">Lv. 3</span>
+        </div>
+        <div class="lesson-card float delay2">
+          <h4>Grammar Quiz</h4>
+          <p>⭐</p>
+          <span class="lvl">Lv. 1</span>
+        </div>
+      </div>
 
-<p>Level: <span id="level">1</span></p>
-<p>XP: <span id="xp">0</span></p>
-<p>Coins: <span id="coins">0</span></p>
+    </div>
+  </section>
 
-<button onclick="feedPet()">Feed Pet (+XP)</button>
+  <!-- PET COLLECTION -->
+  <section id="pet-collection-section" class="section">
+    <h2>Pet Collection</h2>
+    <div class="current-pet"></div>
+    <div class="pet-collection" id="pet-collection"></div>
+    <h4>Collect Demo Pets</h4>
+    <button class="collect-btn" onclick="collectPet('Spanish')">Spanish 🦊</button>
+    <button class="collect-btn" onclick="collectPet('Mandarin')">Mandarin 🐼</button>
+    <button class="collect-btn" onclick="collectPet('Japanese')">Japanese 🐱</button>
+  </section>
 
-</section>
+  <!-- SCHEDULE -->
+  <section id="schedule" class="section">
+    <h2>Today's Schedule</h2>
+    <div class="filter-buttons">
+      <button onclick="filterSchedule('all')">All</button>
+      <button onclick="filterSchedule('spanish')">Spanish</button>
+      <button onclick="filterSchedule('mandarin')">Mandarin</button>
+    </div>
+    <div class="schedule-grid">
+      <div class="event spanish">
+        <h3>Spanish Lesson</h3>
+        <p>2:00 PM – 3:00 PM EST</p>
+      </div>
+      <div class="event mandarin">
+        <h3>Mandarin Lesson</h3>
+        <p>6:00 PM – 7:00 PM EST</p>
+      </div>
+    </div>
 
-<section id="shop">
+    <!-- CALENDAR -->
+    <div class="calendar-box">
+      <input type="date" id="lesson-date">
+      <button onclick="scheduleLesson()">Schedule Lesson</button>
+      <ul id="lesson-list"></ul>
+    </div>
 
-<h2>Pet Shop</h2>
+    <!-- WORLD CLOCK -->
+    <div class="world-clock">
+      <h3 class="world-clock-title">🌍 World Clock</h3>
+      <div id="clock-container" class="clock-container"></div>
+      <div class="add-clock-box">
+        <input type="text" id="new-country" placeholder="Country Name">
+        <input type="text" id="new-tz" placeholder="Timezone (e.g. Europe/Berlin)">
+        <button id="add-clock-btn" type="button">Add Clock</button>
+      </div>
+    </div>
+  </section>
 
-<button onclick="buyPet('🐶',20)">Buy Dog (20 coins)</button>
-<button onclick="buyPet('🐱',20)">Buy Cat (20 coins)</button>
-<button onclick="buyPet('🐲',50)">Buy Dragon (50 coins)</button>
+  <!-- RESOURCES -->
+  <section id="resources" class="section">
+    <h2>Resources</h2>
 
-</section>
+    <!-- RESOURCE CARDS -->
+    <div class="resource-cards">
+      <div class="resource-card" onclick="showResource('video')">🎥 Video Lesson</div>
+      <div class="resource-card" onclick="showResource('flashcards')">🃏 Flashcards</div>
+      <div class="resource-card" onclick="showResource('practice')">✏️ Practice Mode</div>
+      <div class="resource-card" onclick="showResource('test')">📝 Unit Test</div>
+    </div>
 
-<section id="flashcards">
+    <!-- RESOURCE CONTENT -->
+    <div id="video" class="resource-content" style="display:none;">
+      <h3>Video Lesson</h3>
+      <p>Here you can add your video lesson or embed a YouTube link!</p>
+    </div>
+    <div id="flashcards" class="resource-content" style="display:none;">
+      <h3>Flashcards</h3>
+      <div id="flashcard" class="flashcard" onclick="flipCard()">Click "Load Flashcards" to start</div>
+      <div class="menu-buttons">
+        <button onclick="loadSpanishLevel3()">Load Flashcards</button>
+        <button onclick="nextCard()">Next</button>
+      </div>
+    </div>
+    <div id="practice" class="resource-content" style="display:none;">
+      <h3>Practice Mode</h3>
+      <div id="practice-box">
+        <p id="practiceQuestion">Click "Start Practice" to begin.</p>
+        <input id="practiceInput" type="text" placeholder="Type your answer here">
+        <button onclick="checkPractice()">Check Answer</button>
+        <p id="practiceResult"></p>
+        <button onclick="nextPractice()" id="nextPracticeBtn" style="display:none;">Next</button>
+      </div>
+      <div class="menu-buttons">
+        <button onclick="startPractice()">Start Practice</button>
+      </div>
+    </div>
+    <div id="test" class="resource-content" style="display:none;">
+      <h3>Unit Test</h3>
+      <div id="unitTest"></div>
+    </div>
+  </section>
 
-<h2>Flashcards</h2>
+  <!-- CONFETTI CANVAS -->
+  <canvas id="confettiCanvas"></canvas>
 
-<div class="card" id="flashcard">
-<span id="word">Hola</span>
-</div>
+  <footer>
+    © 2026 PolyPet | NJ FBLA State Competition
+  </footer>
 
-<button onclick="flipCard()">Flip</button>
-<button onclick="nextCard()">Next</button>
-
-</section>
-
-<section id="quiz">
-
-<h2>Quiz</h2>
-
-<p id="question">Translate "Hola"</p>
-
-<button onclick="answer('Hello')">Hello</button>
-<button onclick="answer('Bye')">Bye</button>
-<button onclick="answer('Food')">Food</button>
-
-<p id="result"></p>
-
-</section>
-
-<section id="game">
-
-<h2>Mini Game</h2>
-
-<p>Click the button to practice words and earn XP.</p>
-
-<button onclick="playGame()">Practice Word</button>
-
-<p id="gameResult"></p>
-
-</section>
-
-<section id="speech">
-
-<h2>Speech Practice</h2>
-
-<p>Click and say "Hola"</p>
-
-<button onclick="startSpeech()">Start Speaking</button>
-
-<p id="speechResult"></p>
-
-</section>
-
-<section id="map">
-
-<h2>Language Map</h2>
-
-<img 
-src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg"
-id="worldMap">
-
-<div id="languageOutput"></div>
-
-</section>
-
-<section id="leaderboard">
-
-<h2>Leaderboard</h2>
-
-<ol id="leaderboardList"></ol>
-
-<input id="username" placeholder="Your name">
-<button onclick="saveScore()">Submit Score</button>
-
-</section>
-
-<script src="script.js"></script>
-
+  <script src="js/script.js"></script>
 </body>
 </html>
