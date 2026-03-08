@@ -1,62 +1,98 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PolyPet | Master Your Language</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PolyPet Language Learning</title>
+
+<link rel="stylesheet" href="css/styles.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
-    <nav class="sidebar">
-        <div class="logo">🦊 PolyPet</div>
-        <ul class="nav-links">
-            <li class="active">🏠 Dashboard</li>
-            <li>📚 Learning Center</li>
-            <li>🃏 Flashcards</li>
-            <li>🐾 Pet Collection</li>
-            <li>📅 Tutoring</li>
-        </ul>
-        <div class="user-stats">
-            <div class="stat">🔥 <span id="streak-count">12</span> Days</div>
-            <div class="stat">✨ <span id="xp-count">1,250</span> XP</div>
-        </div>
-    </nav>
+<nav class="navbar">
 
-    <main class="content">
-        <header class="top-header">
-            <div class="greeting">
-                <h1 id="welcome-msg">Good Morning, Learner!</h1>
-                <p id="pet-message">"Clever like a fox, keep up the pawsome progress!"</p>
-            </div>
-            <div class="world-clock-widget">
-                <input type="text" id="country-search" placeholder="Add country clock...">
-                <div id="clock-container"></div>
-            </div>
-        </header>
+<div class="logo">🐾 PolyPet</div>
 
-        <section class="dashboard-grid">
-            <div class="card pet-card">
-                <h3>My Companion</h3>
-                <div class="avatar-display">
-                    <img src="https://via.placeholder.com/150?text=Fox" id="main-pet" alt="Mascot">
-                </div>
-                <input type="text" id="pet-name" value="Foxy" onchange="updatePetName()">
-                <p>Level 14 PolyFox</p>
-            </div>
+<div class="nav-links">
+<a onclick="scrollToSection('home')">Home</a>
+<a onclick="scrollToSection('lessons')">Lessons</a>
+<a onclick="scrollToSection('game')">Game</a>
+<a onclick="scrollToSection('map')">Language Map</a>
+<a onclick="scrollToSection('shop')">Pet Shop</a>
+</div>
 
-            <div class="card schedule-card">
-                <h3>Today's Schedule</h3>
-                <ul class="task-list">
-                    <li><span class="time">14:00</span> 🇨🇳 Chinese Live Session</li>
-                    <li><span class="time">16:30</span> 🇩🇪 German Flashcards</li>
-                    <li><span class="time">19:00</span> 🐾 Pet Feeding Time</li>
-                </ul>
-            </div>
-        </section>
-    </main>
+</nav>
 
-    <script src="script.js"></script>
+<section id="home" class="hero">
+
+<div class="pet-panel glass">
+
+<div class="pet-avatar">🦊</div>
+
+<h3 id="pet-name-display">Pika</h3>
+
+<p>Level <span id="level">1</span></p>
+
+<div class="xp-bar">
+<div id="xp-fill"></div>
+</div>
+
+<button onclick="completeLesson()">Complete Lesson</button>
+
+</div>
+
+</section>
+
+<section id="lessons" class="section glass">
+
+<h2>🧠 AI Lesson Generator</h2>
+
+<button onclick="generateLesson()">Generate Lesson</button>
+
+<div id="lessonOutput"></div>
+
+</section>
+
+<section id="game" class="section glass">
+
+<h2>🎮 Pet Mini Game</h2>
+
+<button onclick="startGame()">Start Game</button>
+
+<div id="gameArea"></div>
+
+<p>Score: <span id="gameScore">0</span></p>
+
+</section>
+
+<section id="map" class="section glass">
+
+<h2>🌎 Choose a Language</h2>
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg"
+id="worldMap">
+
+<div id="languageOutput"></div>
+
+</section>
+
+<section id="shop" class="section glass">
+
+<h2>🎨 Pet Customization Shop</h2>
+
+<button onclick="buyItem('hat')">🎩 Hat (50 XP)</button> <button onclick="buyItem('glasses')">🕶 Glasses (40 XP)</button> <button onclick="buyItem('crown')">👑 Crown (100 XP)</button>
+
+</section>
+
+<script src="js/script.js"></script>
+
 </body>
 </html>
