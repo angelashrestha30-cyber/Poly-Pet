@@ -1,98 +1,84 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
 
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>PolyPet Language Learning</title>
-
-<link rel="stylesheet" href="css/styles.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<nav class="navbar">
+<header>
+<h1>🌎 PolyPet Language Learning</h1>
+<p>Learn languages while leveling up your pet!</p>
+</header>
 
-<div class="logo">🐾 PolyPet</div>
-
-<div class="nav-links">
-<a onclick="scrollToSection('home')">Home</a>
-<a onclick="scrollToSection('lessons')">Lessons</a>
-<a onclick="scrollToSection('game')">Game</a>
-<a onclick="scrollToSection('map')">Language Map</a>
-<a onclick="scrollToSection('shop')">Pet Shop</a>
-</div>
-
+<nav>
+<a href="#flashcards">Flashcards</a>
+<a href="#quiz">Quiz</a>
+<a href="#map">Language Map</a>
 </nav>
 
-<section id="home" class="hero">
+<section id="pet-section">
 
-<div class="pet-panel glass">
+<h2>Your PolyPet</h2>
 
-<div class="pet-avatar">🦊</div>
+<div id="pet">🐣</div>
 
-<h3 id="pet-name-display">Pika</h3>
+<p>Level: <span id="level">1</span></p>
+<p>XP: <span id="xp">0</span></p>
 
-<p>Level <span id="level">1</span></p>
+</section>
 
-<div class="xp-bar">
-<div id="xp-fill"></div>
+<section id="flashcards">
+
+<h2>Vocabulary Flashcards</h2>
+
+<div id="flashcard" class="card">
+<span id="word">Hola</span>
 </div>
 
-<button onclick="completeLesson()">Complete Lesson</button>
-
-</div>
-
-</section>
-
-<section id="lessons" class="section glass">
-
-<h2>🧠 AI Lesson Generator</h2>
-
-<button onclick="generateLesson()">Generate Lesson</button>
-
-<div id="lessonOutput"></div>
+<button onclick="flipCard()">Flip</button>
+<button onclick="nextCard()">Next Word</button>
 
 </section>
 
-<section id="game" class="section glass">
+<section id="quiz">
 
-<h2>🎮 Pet Mini Game</h2>
+<h2>Mini Quiz</h2>
 
-<button onclick="startGame()">Start Game</button>
+<p id="question">Translate: Hola</p>
 
-<div id="gameArea"></div>
+<button onclick="answer('Hello')">Hello</button>
+<button onclick="answer('Bye')">Bye</button>
+<button onclick="answer('Food')">Food</button>
 
-<p>Score: <span id="gameScore">0</span></p>
+<p id="result"></p>
 
 </section>
 
-<section id="map" class="section glass">
+<section id="map">
 
-<h2>🌎 Choose a Language</h2>
+<h2>🌎 Choose a Language by Country</h2>
 
-<img
+<p>Click the map to explore a language.</p>
+
+<div class="map-container">
+
+<img 
 src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg"
-id="worldMap">
+id="worldMap"
+alt="World Map">
+
+</div>
 
 <div id="languageOutput"></div>
 
 </section>
 
-<section id="shop" class="section glass">
-
-<h2>🎨 Pet Customization Shop</h2>
-
-<button onclick="buyItem('hat')">🎩 Hat (50 XP)</button> <button onclick="buyItem('glasses')">🕶 Glasses (40 XP)</button> <button onclick="buyItem('crown')">👑 Crown (100 XP)</button>
-
-</section>
-
-<script src="js/script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
