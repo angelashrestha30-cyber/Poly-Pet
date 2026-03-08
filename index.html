@@ -12,44 +12,61 @@
 
 <header>
 <h1>🌎 PolyPet Language Learning</h1>
-<p>Learn languages while leveling up your pet!</p>
+<p>Learn languages while raising your virtual pet</p>
 </header>
 
 <nav>
+<a href="#pet">Pet</a>
 <a href="#flashcards">Flashcards</a>
 <a href="#quiz">Quiz</a>
+<a href="#game">Game</a>
 <a href="#map">Language Map</a>
+<a href="#speech">Speech Practice</a>
+<a href="#leaderboard">Leaderboard</a>
 </nav>
 
-<section id="pet-section">
+<section id="pet">
 
 <h2>Your PolyPet</h2>
 
-<div id="pet">🐣</div>
+<div id="petDisplay">🐣</div>
 
 <p>Level: <span id="level">1</span></p>
 <p>XP: <span id="xp">0</span></p>
+<p>Coins: <span id="coins">0</span></p>
+
+<button onclick="feedPet()">Feed Pet (+XP)</button>
+
+</section>
+
+<section id="shop">
+
+<h2>Pet Shop</h2>
+
+<button onclick="buyPet('🐶',20)">Buy Dog (20 coins)</button>
+<button onclick="buyPet('🐱',20)">Buy Cat (20 coins)</button>
+<button onclick="buyPet('🐲',50)">Buy Dragon (50 coins)</button>
 
 </section>
 
 <section id="flashcards">
 
-<h2>Vocabulary Flashcards</h2>
+<h2>Flashcards</h2>
 
-<div id="flashcard" class="card">
+<div class="card" id="flashcard">
 <span id="word">Hola</span>
 </div>
 
 <button onclick="flipCard()">Flip</button>
-<button onclick="nextCard()">Next Word</button>
+<button onclick="nextCard()">Next</button>
 
 </section>
 
 <section id="quiz">
 
-<h2>Mini Quiz</h2>
+<h2>Quiz</h2>
 
-<p id="question">Translate: Hola</p>
+<p id="question">Translate "Hola"</p>
 
 <button onclick="answer('Hello')">Hello</button>
 <button onclick="answer('Bye')">Bye</button>
@@ -59,22 +76,50 @@
 
 </section>
 
+<section id="game">
+
+<h2>Mini Game</h2>
+
+<p>Click the button to practice words and earn XP.</p>
+
+<button onclick="playGame()">Practice Word</button>
+
+<p id="gameResult"></p>
+
+</section>
+
+<section id="speech">
+
+<h2>Speech Practice</h2>
+
+<p>Click and say "Hola"</p>
+
+<button onclick="startSpeech()">Start Speaking</button>
+
+<p id="speechResult"></p>
+
+</section>
+
 <section id="map">
 
-<h2>🌎 Choose a Language by Country</h2>
-
-<p>Click the map to explore a language.</p>
-
-<div class="map-container">
+<h2>Language Map</h2>
 
 <img 
 src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg"
-id="worldMap"
-alt="World Map">
-
-</div>
+id="worldMap">
 
 <div id="languageOutput"></div>
+
+</section>
+
+<section id="leaderboard">
+
+<h2>Leaderboard</h2>
+
+<ol id="leaderboardList"></ol>
+
+<input id="username" placeholder="Your name">
+<button onclick="saveScore()">Submit Score</button>
 
 </section>
 
